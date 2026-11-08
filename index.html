@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="styles/estilos.css">
 </head>
 <body>
+
+  <a class="salto" href="#contenido">Saltar al contenido</a>
+
   <header class="cabecera">
     <p class="cabecera__marca">DAW Mobility</p>
     <nav class="menu" aria-label="Principal">
@@ -21,7 +24,208 @@
 
   <main class="principal" id="contenido">
     <h1>Solicitud de beca Erasmus+ para prácticas</h1>
+    <p>Rellena este formulario para optar a una plaza de prácticas en una empresa europea durante el segundo curso del ciclo. Los campos marcados con un asterisco (*) son obligatorios.</p>
 
+    <div class="contenido">
+
+      <form class="formulario" action="#" method="post">
+
+        <fieldset class="grupo grupo--personales">
+          <legend class="grupo__titulo">Datos personales</legend>
+          <div class="grupo__campos">
+
+            <div class="campo campo--nombre">
+              <label class="campo__etiqueta" for="nombre">Nombre <span aria-hidden="true">*</span></label>
+              <input class="campo__control" type="text" id="nombre" name="nombre" autocomplete="given-name" required>
+            </div>
+
+            <div class="campo campo--apellidos">
+              <label class="campo__etiqueta" for="apellidos">Apellidos <span aria-hidden="true">*</span></label>
+              <input class="campo__control" type="text" id="apellidos" name="apellidos" autocomplete="family-name" required>
+            </div>
+
+            <div class="campo campo--correo">
+              <label class="campo__etiqueta" for="correo">Correo electrónico <span aria-hidden="true">*</span></label>
+              <input class="campo__control" type="email" id="correo" name="correo" autocomplete="email" aria-describedby="correo-ayuda" required>
+              <p class="campo__ayuda" id="correo-ayuda">Te enviaremos aquí la confirmación.</p>
+            </div>
+
+            <div class="campo campo--telefono">
+              <label class="campo__etiqueta" for="telefono">Teléfono (opcional)</label>
+              <div class="telefono">
+                <select class="campo__control telefono__prefijo" name="prefijo" aria-label="Prefijo internacional">
+                  <option value="+34">+34 España</option>
+                  <option value="+351">+351 Portugal</option>
+                  <option value="+33">+33 Francia</option>
+                  <option value="+49">+49 Alemania</option>
+                </select>
+                <input class="campo__control telefono__numero" type="tel" id="telefono" name="telefono" autocomplete="tel" inputmode="tel">
+              </div>
+            </div>
+
+            <div class="campo campo--nacimiento">
+              <label class="campo__etiqueta" for="nacimiento">Fecha de nacimiento <span aria-hidden="true">*</span></label>
+              <input class="campo__control" type="date" id="nacimiento" name="nacimiento" autocomplete="bday" required>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <fieldset class="grupo grupo--academicos">
+          <legend class="grupo__titulo">Datos académicos</legend>
+          <div class="grupo__campos">
+
+            <div class="campo campo--ciclo">
+              <label class="campo__etiqueta" for="ciclo">Ciclo formativo <span aria-hidden="true">*</span></label>
+              <select class="campo__control" id="ciclo" name="ciclo" required>
+                <option value="">Selecciona un ciclo</option>
+                <option value="daw">Desarrollo de Aplicaciones Web</option>
+                <option value="dam">Desarrollo de Aplicaciones Multiplataforma</option>
+                <option value="asir">Administración de Sistemas Informáticos en Red</option>
+              </select>
+            </div>
+
+            <fieldset class="opciones campo--curso">
+              <legend class="opciones__pregunta">Curso en el que estás matriculado <span aria-hidden="true">*</span></legend>
+              <div class="opciones__lista">
+                <div class="opcion">
+                  <input class="opcion__marca" type="radio" id="curso-1" name="curso" value="1" required>
+                  <label for="curso-1">1.º</label>
+                </div>
+                <div class="opcion">
+                  <input class="opcion__marca" type="radio" id="curso-2" name="curso" value="2">
+                  <label for="curso-2">2.º</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="campo campo--nota">
+              <label class="campo__etiqueta" for="nota">Nota media <span aria-hidden="true">*</span></label>
+              <input class="campo__control" type="number" id="nota" name="nota" min="5" max="10" step="0.01" inputmode="decimal" aria-describedby="nota-ayuda" required>
+              <p class="campo__ayuda" id="nota-ayuda">Entre 5 y 10.</p>
+            </div>
+
+            <fieldset class="opciones campo--idiomas">
+              <legend class="opciones__pregunta">Idiomas que puedes usar en el trabajo (opcional)</legend>
+              <div class="opciones__lista">
+                <div class="opcion">
+                  <input class="opcion__marca" type="checkbox" id="idioma-en" name="idiomas" value="en">
+                  <label for="idioma-en">Inglés</label>
+                </div>
+                <div class="opcion">
+                  <input class="opcion__marca" type="checkbox" id="idioma-fr" name="idiomas" value="fr">
+                  <label for="idioma-fr">Francés</label>
+                </div>
+                <div class="opcion">
+                  <input class="opcion__marca" type="checkbox" id="idioma-de" name="idiomas" value="de">
+                  <label for="idioma-de">Alemán</label>
+                </div>
+                <div class="opcion">
+                  <input class="opcion__marca" type="checkbox" id="idioma-it" name="idiomas" value="it">
+                  <label for="idioma-it">Italiano</label>
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+        </fieldset>
+
+        <fieldset class="grupo grupo--destino">
+          <legend class="grupo__titulo">Preferencias de destino</legend>
+          <div class="grupo__campos">
+
+            <div class="campo campo--pais">
+              <label class="campo__etiqueta" for="pais">País preferido <span aria-hidden="true">*</span></label>
+              <select class="campo__control" id="pais" name="pais" required>
+                <option value="">Selecciona un país</option>
+                <option value="irlanda">Irlanda</option>
+                <option value="alemania">Alemania</option>
+                <option value="italia">Italia</option>
+                <option value="portugal">Portugal</option>
+                <option value="paises-bajos">Países Bajos</option>
+              </select>
+            </div>
+
+            <div class="campo campo--incorporacion">
+              <label class="campo__etiqueta" for="incorporacion">Fecha de incorporación <span aria-hidden="true">*</span></label>
+              <input class="campo__control" type="date" id="incorporacion" name="incorporacion" required>
+            </div>
+
+            <fieldset class="opciones campo--duracion">
+              <legend class="opciones__pregunta">Duración de las prácticas <span aria-hidden="true">*</span></legend>
+              <div class="opciones__lista">
+                <div class="opcion">
+                  <input class="opcion__marca" type="radio" id="duracion-8" name="duracion" value="8" required>
+                  <label for="duracion-8">8 semanas</label>
+                </div>
+                <div class="opcion">
+                  <input class="opcion__marca" type="radio" id="duracion-10" name="duracion" value="10">
+                  <label for="duracion-10">10 semanas</label>
+                </div>
+                <div class="opcion">
+                  <input class="opcion__marca" type="radio" id="duracion-12" name="duracion" value="12">
+                  <label for="duracion-12">12 semanas</label>
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+        </fieldset>
+
+        <fieldset class="grupo grupo--motivacion">
+          <legend class="grupo__titulo">Motivación y documentos</legend>
+          <div class="grupo__campos">
+
+            <div class="campo campo--carta">
+              <label class="campo__etiqueta" for="carta">Carta de motivación <span aria-hidden="true">*</span></label>
+              <textarea class="campo__control" id="carta" name="carta" rows="6" maxlength="600" aria-describedby="carta-ayuda carta-limite" required></textarea>
+              <div class="campo__pie">
+                <p class="campo__ayuda" id="carta-ayuda">Cuéntanos por qué quieres hacer las prácticas fuera.</p>
+                <p class="campo__ayuda" id="carta-limite">Máximo 600 caracteres</p>
+              </div>
+            </div>
+
+            <div class="campo campo--curriculum">
+              <label class="campo__etiqueta" for="curriculum">Currículum (opcional)</label>
+              <input class="campo__control" type="file" id="curriculum" name="curriculum" accept=".pdf,application/pdf" aria-describedby="curriculum-ayuda">
+              <p class="campo__ayuda" id="curriculum-ayuda">Solo archivos PDF de hasta 2 MB.</p>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <div class="opcion opcion--larga">
+          <input class="opcion__marca" type="checkbox" id="privacidad" name="privacidad" required>
+          <label for="privacidad">He leído y acepto la <a href="#">política de privacidad</a> y autorizo el tratamiento de mis datos para gestionar esta solicitud. <span aria-hidden="true">*</span></label>
+        </div>
+
+        <div class="botonera">
+          <button class="boton boton--borrar" type="reset">Borrar formulario</button>
+          <button class="boton boton--secundario" type="button">Guardar borrador</button>
+          <button class="boton boton--principal" type="submit">Enviar solicitud</button>
+        </div>
+
+      </form>
+
+      <aside class="ayuda" aria-labelledby="ayuda-titulo">
+        <h2 class="ayuda__titulo" id="ayuda-titulo">Antes de empezar</h2>
+        <ol class="ayuda__lista">
+          <li class="ayuda__paso">
+            <span class="ayuda__numero" aria-hidden="true">1</span>
+            <p class="ayuda__texto"><strong>Reúne tus datos.</strong> Necesitarás tu nota media y, si quieres, tu currículum en PDF.</p>
+          </li>
+          <li class="ayuda__paso">
+            <span class="ayuda__numero" aria-hidden="true">2</span>
+            <p class="ayuda__texto"><strong>Rellena el formulario.</strong> Puedes guardar un borrador y terminarlo más tarde.</p>
+          </li>
+          <li class="ayuda__paso">
+            <span class="ayuda__numero" aria-hidden="true">3</span>
+            <p class="ayuda__texto"><strong>Espera la confirmación.</strong> Recibirás un correo en un plazo de cinco días laborables.</p>
+          </li>
+        </ol>
+      </aside>
+
+    </div>
   </main>
 
   <footer class="pie">

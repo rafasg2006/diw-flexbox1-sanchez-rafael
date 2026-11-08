@@ -1,4 +1,4 @@
-# Solicitud Erasmus+ · Parte A
+# Solicitud Erasmus+ · Partes A y B
 
 **Autor:** Rafael Sánchez  
 **Repositorio:** https://github.com/rafasg2006/diw-flexbox1-sanchez-rafael
@@ -36,7 +36,7 @@ Para visualizarla, abrir `index.html` en un navegador. No necesita instalación,
 
 ## Alcance
 
-Esta parte del ejercicio prepara únicamente la cabecera, el título y el pie. El formulario se desarrollará en otra parte. Los destinos `href="#"` pertenecen al HTML original y son marcadores de posición.
+La Parte A prepara la cabecera y el pie con Flexbox. La Parte B incorpora la estructura, la ayuda y el formulario con Grid. El HTML suministrado conserva sus botones de borrador y envío como maqueta: no incluye almacenamiento ni un servicio de recepción de solicitudes. Los destinos `href="#"` pertenecen al HTML original y son marcadores de posición.
 
 ## Git y entrega
 
@@ -48,3 +48,20 @@ Para obtener una copia después de la publicación:
 git clone https://github.com/rafasg2006/diw-flexbox1-sanchez-rafael.git
 cd diw-flexbox1-sanchez-rafael
 ```
+
+## Parte B: formulario con Grid
+
+Se utiliza el nuevo `indexParteB.html` como `index.html`, conservando sus clases, etiquetas, controles y orden semántico. El original se mantiene como referencia. La cabecera, el menú y el pie conservan las reglas Flexbox de la Parte A.
+
+- Diseño móvil primero: formulario y ayuda en una columna, en el orden del HTML, y botones apilados.
+- Exactamente dos consultas de medios con `min-width`: `40em` para los campos y la botonera, y `56em` para la estructura de formulario y ayuda en paralelo.
+- Cada bloque usa una rejilla de seis columnas desde `40em`. Los catorce campos se asignan mediante `grid-area` y plantillas de áreas con nombre, también en móvil.
+- Tarjetas blancas con borde y leyenda sobre el borde. Separación de `1.5rem` entre bloques; campos con `1rem` entre filas y `1.5rem` entre columnas en escritorio.
+- Opciones automáticas con `repeat(auto-fit, minmax(min(100%, 8rem), 1fr))`, sin consultas adicionales. El mínimo nunca supera el ancho disponible.
+- Teléfono en dos columnas; el prefijo utiliza un intervalo adaptable de hasta `9.5rem` y el número una columna `minmax(0, 1fr)`.
+- Controles y botones de al menos `2.75rem` (44 píxeles con tamaño base de 16 píxeles). Anchuras mínimas a cero para evitar que fechas o archivos fuercen las columnas.
+- Ayuda de carta y límite en dos columnas desde `40em`; botonera con una columna vacía que separa Borrar de Guardar y Enviar.
+- Ayuda lateral y pasos con Grid. Foco visible, enlace de salto y borde rojo solo para campos inválidos después de interacción (`:user-invalid`).
+- Cabecera de CSS con paleta e índice, y secciones delimitadas por comentarios. Sin tablas de maquetación ni flotados.
+
+Las comprobaciones del 01/11 corresponden a la Parte A. Para la Parte B, el 08/11/2026 se validó la hoja completa mediante W3C CSS Validator (perfil CSS3): `validity=true`, **0 errores y 0 advertencias**. También se confirmó que existen exactamente dos consultas de medios, que `index.html` coincide con el HTML suministrado y que `git diff --check` pasa sin errores. La prueba visual en navegador y el zoom al 200 % requieren una revisión manual en este entorno.

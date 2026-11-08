@@ -1,4 +1,15 @@
-/* Base: medidas relativas para respetar el zoom y el tamaño del texto. */
+/* SOLICITUD ERASMUS+ · PARTES A Y B
+   Paleta: azul #12355b; fondo #f4f6f9; tarjetas #ffffff;
+   texto #1b1b1b; ayuda #4a5568; controles #5b6b7f;
+   tarjetas #b7c0cc; invalido #b3261e; foco #0a5bd3 y #ffd166.
+   Parte A conservada: azul #1b3959 y seleccion #ffd166.
+   Indice: 1. Base; 2. Cabecera y menu (Flexbox); 3. Principal;
+   4. Pie (Flexbox); 5. Estructura; 6. Tarjetas; 7. Campos;
+   8. Telefono; 9. Opciones; 10. Botones; 11. Ayuda;
+   12. Accesibilidad; 13. Formulario 40em; 14. Estructura 56em.
+*/
+
+/* 1. Base */
 * {
   box-sizing: border-box;
 }
@@ -15,7 +26,7 @@ body {
   overflow-wrap: anywhere;
 }
 
-/* La marca y la navegación pueden pasar a otra línea. */
+/* 2. Cabecera y menu: Flexbox de la Parte A */
 .cabecera,
 .pie {
   display: flex;
@@ -82,7 +93,7 @@ body {
   outline-offset: -0.125rem;
 }
 
-/* El contenido crece y mantiene el pie abajo sin superponerlo. */
+/* 3. Contenido principal */
 .principal {
   flex: 1;
   min-width: 0;
@@ -92,9 +103,10 @@ body {
 .principal h1 {
   margin: 0;
   font-size: 1.75rem;
-  text-align: center;
+  text-align: start;
 }
 
+/* 4. Pie: Flexbox de la Parte A */
 .pie {
   padding-top: 1.125rem;
   padding-bottom: 1.125rem;
@@ -112,4 +124,343 @@ body {
 .pie__enlace {
   color: #ffffff;
   text-underline-offset: 0.15em;
+}
+
+/* 5. Estructura: una columna por defecto, en orden del HTML */
+.principal {
+  color: #1b1b1b;
+}
+
+.principal h1,
+.principal > p {
+  color: #12355b;
+}
+
+.contenido,
+.formulario {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.contenido {
+  margin-block-start: 1.5rem;
+}
+
+.contenido > *,
+.grupo__campos > * {
+  min-width: 0;
+}
+
+/* 6. Tarjetas y rejillas de campos */
+.grupo,
+.ayuda {
+  min-width: 0;
+  margin: 0;
+  padding: 1.25rem;
+  border: 1px solid #b7c0cc;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+}
+
+.grupo__titulo {
+  max-width: 100%;
+  padding-inline: 0.5rem;
+  color: #12355b;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.grupo__campos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.grupo--personales .grupo__campos {
+  grid-template-areas: "nombre" "apellidos" "correo" "telefono" "nacimiento";
+}
+
+.grupo--academicos .grupo__campos {
+  grid-template-areas: "ciclo" "curso" "nota" "idiomas";
+}
+
+.grupo--destino .grupo__campos {
+  grid-template-areas: "pais" "incorporacion" "duracion";
+}
+
+.grupo--motivacion .grupo__campos {
+  grid-template-areas: "carta" "curriculum";
+}
+
+.campo--nombre { grid-area: nombre; }
+.campo--apellidos { grid-area: apellidos; }
+.campo--correo { grid-area: correo; }
+.campo--telefono { grid-area: telefono; }
+.campo--nacimiento { grid-area: nacimiento; }
+.campo--ciclo { grid-area: ciclo; }
+.campo--curso { grid-area: curso; }
+.campo--nota { grid-area: nota; }
+.campo--idiomas { grid-area: idiomas; }
+.campo--pais { grid-area: pais; }
+.campo--incorporacion { grid-area: incorporacion; }
+.campo--duracion { grid-area: duracion; }
+.campo--carta { grid-area: carta; }
+.campo--curriculum { grid-area: curriculum; }
+
+/* 7. Campos, controles y ayuda */
+.campo,
+.campo__pie {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.campo__etiqueta,
+.opciones__pregunta {
+  font-weight: 700;
+}
+
+.campo__control {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 2px solid #5b6b7f;
+  border-radius: 0.375rem;
+  background-color: #ffffff;
+  color: #1b1b1b;
+  font: inherit;
+}
+
+textarea.campo__control {
+  resize: vertical;
+}
+
+.campo__ayuda {
+  margin: 0;
+  color: #4a5568;
+  font-size: 0.875rem;
+}
+
+/* 8. Telefono: prefijo adaptable y numero sin minimo intrinseco */
+.telefono {
+  display: grid;
+  grid-template-columns: minmax(min(6rem, 35%), min(9.5rem, 45%)) minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+/* 9. Opciones: columnas automaticas, incluso con texto al 200 % */
+.opciones {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.opciones__pregunta {
+  max-width: 100%;
+  margin-block-end: 0.25rem;
+  padding: 0;
+}
+
+.opciones__lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: 0.5rem 1.5rem;
+}
+
+.opcion {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  min-height: 2.75rem;
+}
+
+.opcion__marca {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+  accent-color: #12355b;
+}
+
+.opcion--larga {
+  align-items: start;
+}
+
+.opcion a {
+  color: #0a5bd3;
+}
+
+/* 10. Botonera: apilada y de ancho completo en movil */
+.botonera {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "borrar" "guardar" "enviar";
+  gap: 1rem;
+}
+
+.boton {
+  min-width: 0;
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 2px solid #5b6b7f;
+  border-radius: 0.375rem;
+  background-color: #ffffff;
+  color: #12355b;
+  font: inherit;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.boton--borrar { grid-area: borrar; }
+.boton--secundario {
+  grid-area: guardar;
+  border-color: #12355b;
+}
+.boton--principal {
+  grid-area: enviar;
+  border-color: #12355b;
+  background-color: #12355b;
+  color: #ffffff;
+}
+
+/* 11. Cuadro de ayuda y pasos: Grid */
+.ayuda,
+.ayuda__lista {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+}
+
+.ayuda__titulo {
+  margin: 0;
+  color: #12355b;
+  font-size: 1.2rem;
+}
+
+.ayuda__lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ayuda__paso {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.ayuda__numero {
+  display: grid;
+  place-items: center;
+  min-height: 2rem;
+  border-radius: 50%;
+  background-color: #12355b;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.ayuda__texto {
+  margin: 0;
+}
+
+/* 12. Accesibilidad: salto, foco e invalidez tras interaccion */
+.salto {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: 1;
+  max-width: calc(100% - 1rem);
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  background-color: #12355b;
+  color: #ffffff;
+  transform: translateY(calc(-100% - 1rem));
+}
+
+.salto:focus {
+  transform: translateY(0);
+}
+
+.campo__control:focus-visible,
+.opcion__marca:focus-visible,
+.opcion a:focus-visible,
+.boton:focus-visible {
+  outline: 2px solid #0a5bd3;
+  outline-offset: 2px;
+}
+
+.boton--principal:focus-visible,
+.salto:focus-visible {
+  outline: 2px solid #ffd166;
+  outline-offset: -0.25rem;
+}
+
+.campo__control:user-invalid {
+  border-color: #b3261e;
+}
+
+/* 13. Desde 40em: seis columnas y zonas con nombre */
+@media (min-width: 40em) {
+  .grupo__campos {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1rem 1.5rem;
+  }
+
+  .grupo--personales .grupo__campos {
+    grid-template-areas:
+      "nombre nombre apellidos apellidos apellidos apellidos"
+      "correo correo correo telefono telefono telefono"
+      "nacimiento nacimiento . . . .";
+  }
+
+  .grupo--academicos .grupo__campos {
+    grid-template-areas:
+      "ciclo ciclo ciclo curso curso curso"
+      "nota nota idiomas idiomas idiomas idiomas";
+  }
+
+  .grupo--destino .grupo__campos {
+    grid-template-areas:
+      "pais pais pais incorporacion incorporacion incorporacion"
+      "duracion duracion duracion duracion duracion duracion";
+  }
+
+  .grupo--motivacion .grupo__campos {
+    grid-template-areas:
+      "carta carta carta carta carta carta"
+      "curriculum curriculum curriculum curriculum curriculum curriculum";
+  }
+
+  .campo__pie {
+    grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+    column-gap: 1rem;
+  }
+
+  #carta-limite {
+    text-align: end;
+  }
+
+  .botonera {
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto) minmax(0, auto);
+    grid-template-areas: "borrar . guardar enviar";
+  }
+}
+
+/* 14. Desde 56em: formulario y ayuda en paralelo */
+@media (min-width: 56em) {
+  .contenido {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 2rem;
+  }
 }
