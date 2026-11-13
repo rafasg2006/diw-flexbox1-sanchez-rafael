@@ -1,15 +1,47 @@
-/* SOLICITUD ERASMUS+ · PARTES A Y B
-   Paleta: azul #12355b; fondo #f4f6f9; tarjetas #ffffff;
-   texto #1b1b1b; ayuda #4a5568; controles #5b6b7f;
-   tarjetas #b7c0cc; invalido #b3261e; foco #0a5bd3 y #ffd166.
-   Parte A conservada: azul #1b3959 y seleccion #ffd166.
-   Indice: 1. Base; 2. Cabecera y menu (Flexbox); 3. Principal;
-   4. Pie (Flexbox); 5. Estructura; 6. Tarjetas; 7. Campos;
-   8. Telefono; 9. Opciones; 10. Botones; 11. Ayuda;
-   12. Accesibilidad; 13. Formulario 40em; 14. Estructura 56em.
+/* SOLICITUD ERASMUS+ · PARTES A, B Y C
+   Paleta declarada exclusivamente en :root mediante variables CSS.
+   Efectos avanzados: variables, sombras, degradados y transiciones.
+   Indice:
+   1. Variables de paleta (:root);
+   2. Base;
+   3. Cabecera y menu (Flexbox);
+   4. Principal;
+   5. Pie (Flexbox);
+   6. Estructura;
+   7. Tarjetas y rejillas de campos;
+   8. Campos, controles y ayuda;
+   9. Telefono;
+   10. Opciones;
+   11. Botonera y botones con respuesta;
+   12. Cuadro de ayuda y pasos con escala;
+   13. Accesibilidad;
+   14. Desde 40em: seis columnas y zonas con nombre;
+   15. Desde 56em: formulario y ayuda en paralelo.
 */
 
-/* 1. Base */
+/* 1. Variables de paleta (:root)
+   nombres que indican su papel y no su color. */
+:root {
+  --color-primario: #12355b;                /* cabecera, pie, títulos, botón principal */
+  --color-primario-claro: #1f6088;          /* extremo claro del degradado */
+  --color-primario-oscuro: #0b2340;         /* botón principal al pasar el ratón o enfocar */
+  --color-secundario-hover: #e3ebf6;        /* botones secundarios al pasar el ratón o enfocar */
+  --color-fondo: #f4f6f9;                   /* fondo general de la página */
+  --color-superficie: #ffffff;              /* tarjetas, campos y botones */
+  --color-texto: #1b1b1b;                   /* texto principal del cuerpo */
+  --color-texto-inverso: #ffffff;           /* texto sobre fondo oscuro */
+  --color-texto-secundario: #4a5568;        /* textos de ayuda y secundarios */
+  --color-borde-control: #5b6b7f;           /* bordes de controles y botones */
+  --color-borde-tarjeta: #b7c0cc;           /* bordes de las tarjetas */
+  --color-error: #b3261e;                   /* bordes de campos con error */
+  --color-enlace: #0a5bd3;                  /* enlaces de texto */
+  --color-foco: #0a5bd3;                    /* contorno de foco por defecto */
+  --color-acento: #ffd166;                  /* elemento seleccionado y foco en fondo oscuro */
+  --color-sombra-bloque: rgba(18, 53, 91, 0.2); /* sombra suave de tarjetas y botón principal */
+  --color-sombra-texto: rgba(0, 0, 0, 0.45);    /* sombra discreta del texto de la marca */
+}
+
+/* 2. Base */
 * {
   box-sizing: border-box;
 }
@@ -19,14 +51,14 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  background-color: #f4f6f9;
-  color: #1b3959;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
   font-family: system-ui, sans-serif;
   line-height: 1.5;
   overflow-wrap: anywhere;
 }
 
-/* 2. Cabecera y menu: Flexbox de la Parte A */
+/* 3. Cabecera y menu: Flexbox de la Parte A con degradado y sombra de marca */
 .cabecera,
 .pie {
   display: flex;
@@ -35,14 +67,16 @@ body {
   justify-content: space-between;
   gap: 1rem 2rem;
   padding: 0.5rem 1.75rem 0.5rem 5%;
-  background-color: #1b3959;
-  color: #ffffff;
+  background-color: var(--color-primario);
+  background-image: linear-gradient(to right, var(--color-primario), var(--color-primario-claro));
+  color: var(--color-texto-inverso);
 }
 
 .cabecera__marca {
   margin: 0;
   font-size: 1.375rem;
   font-weight: 700;
+  text-shadow: 0 0.0625rem 0.125rem var(--color-sombra-texto);
 }
 
 .menu,
@@ -72,13 +106,14 @@ body {
   display: block;
   padding: 0.5rem 0.75rem;
   border-bottom: 0.1875rem solid transparent;
-  color: #ffffff;
+  color: var(--color-texto-inverso);
   text-decoration: none;
   text-underline-offset: 0.15em;
 }
 
+.menu__enlace[aria-current],
 .menu__enlace[aria-current="page"] {
-  border-bottom-color: #ffd166;
+  border-bottom-color: var(--color-acento);
   font-weight: 700;
 }
 
@@ -89,15 +124,16 @@ body {
 
 .menu__enlace:focus-visible,
 .pie__enlace:focus-visible {
-  outline: 0.125rem solid #ffd166;
+  outline: 0.125rem solid var(--color-acento);
   outline-offset: -0.125rem;
 }
 
-/* 3. Contenido principal */
+/* 4. Contenido principal */
 .principal {
   flex: 1;
   min-width: 0;
   padding: 1.25rem 5%;
+  color: var(--color-texto);
 }
 
 .principal h1 {
@@ -106,7 +142,12 @@ body {
   text-align: start;
 }
 
-/* 4. Pie: Flexbox de la Parte A */
+.principal h1,
+.principal > p {
+  color: var(--color-primario);
+}
+
+/* 5. Pie: Flexbox de la Parte A con degradado */
 .pie {
   padding-top: 1.125rem;
   padding-bottom: 1.125rem;
@@ -122,20 +163,11 @@ body {
 }
 
 .pie__enlace {
-  color: #ffffff;
+  color: var(--color-texto-inverso);
   text-underline-offset: 0.15em;
 }
 
-/* 5. Estructura: una columna por defecto, en orden del HTML */
-.principal {
-  color: #1b1b1b;
-}
-
-.principal h1,
-.principal > p {
-  color: #12355b;
-}
-
+/* 6. Estructura: una columna por defecto, en orden del HTML */
 .contenido,
 .formulario {
   display: grid;
@@ -153,21 +185,22 @@ body {
   min-width: 0;
 }
 
-/* 6. Tarjetas y rejillas de campos */
+/* 7. Tarjetas y rejillas de campos: sombra suave en bloques y ayuda */
 .grupo,
 .ayuda {
   min-width: 0;
   margin: 0;
   padding: 1.25rem;
-  border: 1px solid #b7c0cc;
+  border: 1px solid var(--color-borde-tarjeta);
   border-radius: 0.5rem;
-  background-color: #ffffff;
+  background-color: var(--color-superficie);
+  box-shadow: 0 0.125rem 0.5rem var(--color-sombra-bloque);
 }
 
 .grupo__titulo {
   max-width: 100%;
   padding-inline: 0.5rem;
-  color: #12355b;
+  color: var(--color-primario);
   font-size: 1.2rem;
   font-weight: 700;
 }
@@ -210,7 +243,7 @@ body {
 .campo--carta { grid-area: carta; }
 .campo--curriculum { grid-area: curriculum; }
 
-/* 7. Campos, controles y ayuda */
+/* 8. Campos, controles y ayuda */
 .campo,
 .campo__pie {
   display: grid;
@@ -231,10 +264,10 @@ body {
   max-width: 100%;
   min-height: 2.75rem;
   padding: 0.5rem 0.75rem;
-  border: 2px solid #5b6b7f;
+  border: 2px solid var(--color-borde-control);
   border-radius: 0.375rem;
-  background-color: #ffffff;
-  color: #1b1b1b;
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
   font: inherit;
 }
 
@@ -244,18 +277,18 @@ textarea.campo__control {
 
 .campo__ayuda {
   margin: 0;
-  color: #4a5568;
+  color: var(--color-texto-secundario);
   font-size: 0.875rem;
 }
 
-/* 8. Telefono: prefijo adaptable y numero sin minimo intrinseco */
+/* 9. Telefono: prefijo adaptable y numero sin minimo intrinseco */
 .telefono {
   display: grid;
   grid-template-columns: minmax(min(6rem, 35%), min(9.5rem, 45%)) minmax(0, 1fr);
   gap: 0.5rem;
 }
 
-/* 9. Opciones: columnas automaticas, incluso con texto al 200 % */
+/* 10. Opciones: columnas automaticas, incluso con texto al 200 % */
 .opciones {
   min-width: 0;
   margin: 0;
@@ -288,7 +321,7 @@ textarea.campo__control {
   width: 1.5rem;
   height: 1.5rem;
   margin: 0;
-  accent-color: #12355b;
+  accent-color: var(--color-primario);
 }
 
 .opcion--larga {
@@ -296,10 +329,10 @@ textarea.campo__control {
 }
 
 .opcion a {
-  color: #0a5bd3;
+  color: var(--color-enlace);
 }
 
-/* 10. Botonera: apilada y de ancho completo en movil */
+/* 11. Botonera y botones con respuesta */
 .botonera {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -311,29 +344,62 @@ textarea.campo__control {
   min-width: 0;
   min-height: 2.75rem;
   padding: 0.5rem 1rem;
-  border: 2px solid #5b6b7f;
+  border: 2px solid var(--color-borde-control);
   border-radius: 0.375rem;
-  background-color: #ffffff;
-  color: #12355b;
+  background-color: var(--color-superficie);
+  color: var(--color-primario);
   font: inherit;
   font-weight: 700;
   overflow-wrap: anywhere;
   cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
-.boton--borrar { grid-area: borrar; }
+.boton--borrar {
+  grid-area: borrar;
+}
+
 .boton--secundario {
   grid-area: guardar;
-  border-color: #12355b;
-}
-.boton--principal {
-  grid-area: enviar;
-  border-color: #12355b;
-  background-color: #12355b;
-  color: #ffffff;
+  border-color: var(--color-primario);
 }
 
-/* 11. Cuadro de ayuda y pasos: Grid */
+.boton--principal {
+  grid-area: enviar;
+  border-color: var(--color-primario);
+  background-color: var(--color-primario);
+  color: var(--color-texto-inverso);
+  box-shadow: 0 0.125rem 0.25rem var(--color-sombra-bloque);
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.boton:hover,
+.boton:focus-visible {
+  transform: translateY(-2px);
+}
+
+.boton--principal:hover,
+.boton--principal:focus-visible {
+  background-color: var(--color-primario-oscuro);
+}
+
+.boton--secundario:hover,
+.boton--secundario:focus-visible,
+.boton--borrar:hover,
+.boton--borrar:focus-visible {
+  background-color: var(--color-secundario-hover);
+}
+
+.boton:active {
+  transform: translateY(0);
+}
+
+.boton--principal:active {
+  transform: translateY(0);
+  box-shadow: 0 0.0625rem 0.0625rem var(--color-sombra-bloque);
+}
+
+/* 12. Cuadro de ayuda y pasos con escala */
 .ayuda,
 .ayuda__lista {
   display: grid;
@@ -343,7 +409,7 @@ textarea.campo__control {
 
 .ayuda__titulo {
   margin: 0;
-  color: #12355b;
+  color: var(--color-primario);
   font-size: 1.2rem;
 }
 
@@ -365,16 +431,17 @@ textarea.campo__control {
   place-items: center;
   min-height: 2rem;
   border-radius: 50%;
-  background-color: #12355b;
-  color: #ffffff;
+  background-color: var(--color-primario);
+  color: var(--color-texto-inverso);
   font-weight: 700;
+  transition: transform 0.2s;
 }
 
-.ayuda__texto {
-  margin: 0;
+.ayuda__paso:hover .ayuda__numero {
+  transform: scale(1.1);
 }
 
-/* 12. Accesibilidad: salto, foco e invalidez tras interaccion */
+/* 13. Accesibilidad: salto, foco e invalidez tras interaccion */
 .salto {
   position: absolute;
   inset-block-start: 0.5rem;
@@ -383,8 +450,8 @@ textarea.campo__control {
   max-width: calc(100% - 1rem);
   padding: 0.75rem;
   border-radius: 0.375rem;
-  background-color: #12355b;
-  color: #ffffff;
+  background-color: var(--color-primario);
+  color: var(--color-texto-inverso);
   transform: translateY(calc(-100% - 1rem));
 }
 
@@ -396,21 +463,21 @@ textarea.campo__control {
 .opcion__marca:focus-visible,
 .opcion a:focus-visible,
 .boton:focus-visible {
-  outline: 2px solid #0a5bd3;
+  outline: 2px solid var(--color-foco);
   outline-offset: 2px;
 }
 
 .boton--principal:focus-visible,
 .salto:focus-visible {
-  outline: 2px solid #ffd166;
+  outline: 2px solid var(--color-acento);
   outline-offset: -0.25rem;
 }
 
 .campo__control:user-invalid {
-  border-color: #b3261e;
+  border-color: var(--color-error);
 }
 
-/* 13. Desde 40em: seis columnas y zonas con nombre */
+/* 14. Desde 40em: seis columnas y zonas con nombre */
 @media (min-width: 40em) {
   .grupo__campos {
     grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -447,7 +514,7 @@ textarea.campo__control {
     column-gap: 1rem;
   }
 
-  #carta-limite {
+  [id="carta-limite"] {
     text-align: end;
   }
 
@@ -457,7 +524,7 @@ textarea.campo__control {
   }
 }
 
-/* 14. Desde 56em: formulario y ayuda en paralelo */
+/* 15. Desde 56em: formulario y ayuda en paralelo */
 @media (min-width: 56em) {
   .contenido {
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
